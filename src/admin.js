@@ -15,6 +15,7 @@ const AdminPage = () => {
     imageUrl: "",
     isPopular: false,
     inSlide: false,
+    isLie: false,
   });
   const [isEditing, setIsEditing] = useState(false);
   const [editingId, setEditingId] = useState(null);
@@ -62,6 +63,7 @@ const AdminPage = () => {
         imageUrl: "",
         isPopular: false,
         inSlide: false,
+        isLie: false,
       });
     } catch (error) {
       console.error("Error saving article:", error);
@@ -87,6 +89,7 @@ const AdminPage = () => {
       imageUrl: articleToEdit.imageUrl,
       isPopular: articleToEdit.isPopular,
         inSlide: articleToEdit.inSlide,
+        isLie: articleToEdit.isLie,
     });
     setIsEditing(true);
     setEditingId(id);
@@ -154,6 +157,15 @@ const AdminPage = () => {
             onChange={handleChange}
           />
         </label>
+        <label>
+          Is Lie
+          <input
+            type="checkbox"
+            name="inLie"
+            checked={formData.isLie}
+            onChange={handleChange}
+          />
+        </label>
         <button type="submit">
           {isEditing ? "Update Article" : "Add Article"}
         </button>
@@ -188,6 +200,11 @@ const AdminPage = () => {
                 {article.inSlide
                   ? "This article is in slide!"
                   : "This article is not in slide."}
+              </p>
+              <p>
+                {article.isLie
+                  ? "This article is Lie!"
+                  : "This article is Lie."}
               </p>
             </li>
           ))}
